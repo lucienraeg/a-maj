@@ -6,7 +6,7 @@ import colors as col
 
 class Terminal():
 
-    def __init__(self, width, height, title='', font='terminal8x12'):
+    def __init__(self, width, height, title='', font='terminal8x14'):
         self.width = width
         self.height = height
         self.title = title
@@ -30,18 +30,18 @@ class Terminal():
             # blit window
             win.blit(self.root)
 
-
-
-# initialize
-t = Terminal(32, 16)
-
-w1 = t.create_window(0, 0, 16, 16)
-w1.draw_char(1, 4, 15, col.RED, col.BASE07)
-w1.draw_char(10, 2, None, None, col.CYAN)
-w1.draw_char(2, 8, 1, col.MAGENTA, None)
-
-# main loop
-while not tdl.event.is_window_closed():
+def blit_terminal(t):
+    # main loop
     t.blit_windows()
-
     tdl.flush()
+
+def is_window_open():
+    return not tdl.event.is_window_closed()
+
+if __name__ == '__main__':
+    # initialize
+    t = Terminal(64, 32)
+    w1 = t.create_window(0, 0, 16, 16)
+
+    # main loop
+    blit_terminal(t)
